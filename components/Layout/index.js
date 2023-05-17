@@ -1,8 +1,6 @@
 import React from "react";
-
 import styles from "./layout.module.scss";
 import Header from "../Header";
-import CategoriesBar from "components/Categories";
 
 export default function Layout({ children, noCategories }) {
   return (
@@ -10,7 +8,6 @@ export default function Layout({ children, noCategories }) {
       <div className={styles.content}>
         <Header />
         <div className={styles.main}>
-          {!noCategories && <CategoriesBar />}
           {children}
         </div>
       </div>

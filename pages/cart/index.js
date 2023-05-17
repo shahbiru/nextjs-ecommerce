@@ -3,24 +3,21 @@ import styles from "./cart.module.scss";
 
 import Layout from "components/Layout";
 import CartItem from "@/components/CartItem";
-import { useCart, useCartOnce } from "hooks/cart.hook";
-import React, { useEffect, useState } from "react";
-import { auth, db } from "@/config/firebase";
-import { useAuth } from "@/firebase/context";
+import React from "react";
 import { addToCart } from "@/firebase/product";
 import { useRouter } from "next/router";
 
 export default function CartPage() {
-  const { user, loading } = useAuth();
-  const { data } = useCart();
+  const user = true;
+  const data = [  { "id": 1,    "name": "Product 1",    "size": 19.99, "count" : "2" },  {  "id": 1,    "name": "Product 1",    "size": 19.99, "count" : "2"  }]
 
-  const cartLength = Object.keys(data).reduce((a, b) => a + data[b].length, 0);
-
+  const cartLength = Object.keys(data).reduce((a, b) => a + data, 0);
+console.log(cartLength)
   const cartItems =
     cartLength > 0
       ? Object.keys(data)
           .map((item) => {
-            return data[item].map((size) => {
+            return data.map((size) => {
               return {
                 name: item,
                 size,
@@ -65,7 +62,7 @@ export default function CartPage() {
 
   const router = useRouter();
 
-  if (!loading && !user && typeof window !== "undefined") router.push("/login");
+  // if (!loading && !user && typeof window !== "undefined") router.push("/login");
 
   return (
     <Layout>
@@ -78,15 +75,15 @@ export default function CartPage() {
         <main className={styles.main}>
           <div className={styles.header}>
             <h1 className={styles.title}>My Cart</h1>
-            <h4>You have {cartLength} items in your cart</h4>
+            <h4>You have 3 items in your cart</h4>
           </div>
           {cartItemsArray.map((item, index) => {
             return (
               <CartItem
                 key={index}
-                id={item.name}
-                size={item.size}
-                count={item.count}
+                id="dsfs"
+                size="9898"
+                count="2"
                 onAdd={addCartEvent}
               />
             );

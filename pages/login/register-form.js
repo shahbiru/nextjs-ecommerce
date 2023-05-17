@@ -5,7 +5,6 @@ import * as yup from "yup";
 
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import SocialMediaButton from "@/components/SocialMediaButton";
 import { emailRegister, registerDatabase } from "firebase/register";
 import googleAuth from "firebase/google-auth";
 

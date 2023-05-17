@@ -4,17 +4,15 @@ import AccountSidebar from "@/components/AccountSidebar";
 import Layout from "@/components/Layout";
 
 import styles from "./orders.module.scss";
-import { useAuth } from "@/firebase/context";
 import OrderItem from "@/components/OrderItem";
-import { useOrders } from "hooks/order.hook";
 import { useRouter } from "next/router";
 
 export default function Orders() {
-  const { user, loading } = useAuth();
+  const user = true;
+  const data = [  { "id": 1,    "title": "Product 1",    "price": 19.99,    "image": "https://via.placeholder.com/150"  },  {    "id": 2,    "title": "Product 2",    "price": 29.99,    "image": "https://via.placeholder.com/150"  },  {    "id": 3,    "title": "Product 3",    "price": 39.99,    "image": "https://via.placeholder.com/150"  }]
 
-  const { data } = useOrders();
 
-  if (!user && !loading) useRouter().push("/login");
+  if (!user ) useRouter().push("/login");
 
   return (
     <Layout noCategories>

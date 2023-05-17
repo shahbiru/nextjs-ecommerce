@@ -6,10 +6,6 @@ import styles from "./header.module.scss";
 import SearchIcon from "@/icons/search";
 import CartIcon from "@/icons/cart";
 import ArrowIcon from "@/icons/arrow";
-
-import { useAuth } from "@/firebase/context";
-import { db, auth } from "@/config/firebase";
-import { useCart } from "hooks/cart.hook";
 import { useRouter } from "next/router";
 import MenuIcon from "@/icons/menu";
 
@@ -21,9 +17,9 @@ export default function Header() {
 
   const router = useRouter();
 
-  const { user } = useAuth();
+  const user = false;
 
-  const cart = useCart().data;
+  const cart = false;
   const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
 
   return (
@@ -57,9 +53,7 @@ export default function Header() {
         <div className={styles.menuContent} style={showHeader}>
           {user ? (
             <>
-              <Link href="/account">My Account</Link>
               <Link href="/account/orders">My Orders</Link>
-              <Link href="/account/favorites">Favourites</Link>
               <Link href="/account/logout">Logout</Link>
             </>
           ) : (
@@ -125,9 +119,7 @@ export default function Header() {
               <div className={styles.dropdownMenu}>
                 {user ? (
                   <>
-                    <Link href="/account">My Account</Link>
                     <Link href="/account/orders">My Orders</Link>
-                    <Link href="/account/favorites">Favourites</Link>
                     <Link href="/account/logout">Logout</Link>
                   </>
                 ) : (
