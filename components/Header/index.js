@@ -71,27 +71,6 @@ export default function Header() {
           }
         />
       </div>
-      <div className={styles.searchContainer}>
-        <SearchIcon
-          width={20}
-          height={20}
-          fill="grey"
-          className={styles.searchIcon}
-        />
-        <form
-          onSubmit={() =>
-            input &&
-            typeof window !== "undefined" &&
-            router.push(`/search/${input}`)
-          }
-        >
-          <input
-            className={styles.searchInput}
-            placeholder="Search for products, brands and more... "
-            onChange={(e) => setInput(e.target.value)}
-          />
-        </form>
-      </div>
       <div className={styles.rightContent}>
         <Link href="/cart">
           <div className={styles.cartContainer}>

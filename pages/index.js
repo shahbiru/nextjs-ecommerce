@@ -1,6 +1,5 @@
 import Head from "next/head";
 import styles from "./index.module.scss";
-import Button from "components/FilterButton";
 import Layout from "components/Layout";
 import ProductCard from "@/components/ProductCard/product-card";
 
@@ -18,10 +17,6 @@ const data = [  { "id": 1,    "title": "Product 1",    "price": 19.99,    "image
             <h1 className={styles.title}>
               Product
             </h1>
-            <div className={styles.headerButtons}>
-              <Button type="sort" style={{ marginRight: 20 }} />
-              <Button count={0} />
-            </div>
           </div>
           <div className={styles.products}>
             {

@@ -4,7 +4,6 @@ import styles from "./cart.module.scss";
 import Layout from "components/Layout";
 import CartItem from "@/components/CartItem";
 import React from "react";
-import { addToCart } from "@/firebase/product";
 import { useRouter } from "next/router";
 
 export default function CartPage() {
@@ -12,7 +11,7 @@ export default function CartPage() {
   const data = [  { "id": 1,    "name": "Product 1",    "size": 19.99, "count" : "2" },  {  "id": 1,    "name": "Product 1",    "size": 19.99, "count" : "2"  }]
 
   const cartLength = Object.keys(data).reduce((a, b) => a + data, 0);
-console.log(cartLength)
+
   const cartItems =
     cartLength > 0
       ? Object.keys(data)
@@ -57,7 +56,7 @@ console.log(cartLength)
           ...data,
           [id]: data.hasOwnProperty(id) ? [...data[id], "-"] : ["-"],
         };
-    addToCart(newCart);
+    // addToCart(newCart);
   };
 
   const router = useRouter();

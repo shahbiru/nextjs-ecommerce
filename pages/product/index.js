@@ -2,17 +2,10 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-import { db } from "@/config/firebase";
-import { useAuth } from "@/firebase/context";
-import { removeFavorite, addFavorite, addToCart } from "@/firebase/product";
-
 import styles from "./product.module.scss";
 
 import Layout from "components/Layout";
 import Button from "@/components/Button";
-import HeartIcon from "@/icons/heart";
-import HeartFilled from "@/icons/heart-filled";
-import ErrorPage from "pages/404";
 import { useRouter } from "next/router";
 
 export default function Product({ query }) {
@@ -21,7 +14,7 @@ export default function Product({ query }) {
   // const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [isFavorite, setFavorite] = useState(false);
 
-  const { user, loading } = useAuth();
+  const user = true;
 
   const router = useRouter();
 
@@ -35,7 +28,7 @@ const data = {brand: "aaa",information:"adwasda",price:"13",product_name:"SAdas"
   const cart = data;
 
   const addCartEvent = () => {
-    if (!user && !loading && typeof window !== "undefined")
+    if (!user && typeof window !== "undefined")
       router.push("/login");
     else {
       if (selectedSize) {
@@ -45,14 +38,14 @@ const data = {brand: "aaa",information:"adwasda",price:"13",product_name:"SAdas"
             ? [...cart[id], selectedSize]
             : [selectedSize],
         };
-        addToCart(newCart);
+        // addToCart(newCart);
       }
       if (sizes?.length === 0) {
         const newCart = {
           ...cart,
           [id]: cart.hasOwnProperty(id) ? [...cart[id], "-"] : ["-"],
         };
-        addToCart(newCart);
+        // addToCart(newCart);
       }
     }
   };

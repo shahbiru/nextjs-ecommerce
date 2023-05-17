@@ -5,8 +5,6 @@ import * as yup from "yup";
 
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import { emailRegister, registerDatabase } from "firebase/register";
-import googleAuth from "firebase/google-auth";
 
 const schema = yup.object().shape({
   name: yup
@@ -30,22 +28,9 @@ export default function RegisterForm() {
     resolver: yupResolver(schema),
   });
   const onSubmit = ({ email, password, name, surname }) =>
-    emailRegister({ email, password })
-      .then((response) => {
-        registerDatabase({
-          id: response.user.uid,
-          email,
-          name,
-          surname,
-        })
-          .then(() =>
-            setRegisterError(
-              "You have registered succesfully. You can login now"
-            )
-          )
-          .catch((e) => setRegisterError(e.message));
-      })
-      .catch((error) => setRegisterError(error.message));
+  {
+
+  }
 
   return (
     <form
