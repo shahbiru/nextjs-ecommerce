@@ -7,6 +7,10 @@ const registerSchema = new mongoose.Schema({
         require: true,
         minlength: 3,
     },
+    surname: {
+        type: String,
+        rquired: true,
+    },
     email: {
         type: String,
         rquired: true,
@@ -17,22 +21,10 @@ const registerSchema = new mongoose.Schema({
             }
         }
     },
-    phone:{
-        type: Number,
-        min: 10,
-        required: true,
-        unique: true,
-    },
-    address: {
-        type: String,
-        rquired: true,
-    },
     password: {
         type: String,
         rquired: true,
-        minlength:5,
-        maxlength:10,
-
+        minlength: 8,
     }
 })
 

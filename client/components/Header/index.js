@@ -11,7 +11,7 @@ export default function Header() {
     transform: "translate3d(100vw, 0, 0)",
   });
 
-  const user = true;
+  const user = false;
   const cart = false;
   const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
 
