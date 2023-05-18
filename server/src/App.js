@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 require("./db/conn");
 require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
-const productRoutes = require("./routes/productRoutes")
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -16,6 +17,7 @@ app.use(bodyParser.json())
 
 app.use("/api", authRoutes);
 app.use("/api", productRoutes);
+app.use("/api", cartRoutes);
 
 app.listen(port, () => {
   console.log(`connection setup on port ${port}`)
