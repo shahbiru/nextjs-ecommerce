@@ -5,6 +5,7 @@ import * as yup from "yup";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Link from "next/link";
+import constants from "utils/constants";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("* Email is required."),
@@ -22,7 +23,7 @@ export default function LoginForm() {
   });
 
   const onSubmit = (data) => {
-  
+
   };
   return (
     <form
@@ -54,7 +55,7 @@ export default function LoginForm() {
         </span>
       )}
 
-      <Button type="submit">Login</Button>
+      <Button type="submit">{constants.LOGIN}</Button>
       {loginError && (
         <span
           style={{
@@ -67,8 +68,8 @@ export default function LoginForm() {
           {loginError}
         </span>
       )}
-      <span style={{ fontWeight: "bold", marginBottom: 60 }}>
-        <Link href="/forgot-password">Forgot Password?</Link>
+      <span style={{ fontWeight: "bold" }}>
+        <Link href="/forgot-password">{constants.FORGOT_PASSWORD}</Link>
       </span>
     </form>
   );

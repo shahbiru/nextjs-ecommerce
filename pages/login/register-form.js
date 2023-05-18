@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import constants from "utils/constants";
 
 const schema = yup.object().shape({
   name: yup
@@ -27,15 +27,14 @@ export default function RegisterForm() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = ({ email, password, name, surname }) =>
-  {
+  const onSubmit = ({ email, password, name, surname }) => {
 
   }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      style={{ display: "flex", flexDirection: "column", paddingTop: 30 }}
+      style={{ display: "flex", flexDirection: "column" }}
     >
       <Input
         name="name"
@@ -82,9 +81,6 @@ export default function RegisterForm() {
           {errors.password.message}
         </span>
       )}
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
-
       {registerError && (
         <span
           style={{
@@ -98,10 +94,9 @@ export default function RegisterForm() {
         </span>
       )}
 
-      <Button type="submit">Register</Button>
+      <Button type="submit">{constants.REGISTER}</Button>
       <div style={{ fontSize: 12, display: "flex" }}>
-        By clicking Register, you agree to use out Terms and that you have read
-        our Data Use Policy, including our Cookie Use
+        {constants.REGISTER_POLICY}
       </div>
     </form>
   );

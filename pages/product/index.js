@@ -1,81 +1,20 @@
-import { useState, useEffect } from "react";
-import Head from "next/head";
 import Link from "next/link";
-
 import styles from "./product.module.scss";
-
-import Layout from "components/Layout";
 import Button from "@/components/Button";
-import { useRouter } from "next/router";
 
 export default function Product({ query }) {
 
-  const [selectedSize, setSelectedSize] = useState();
-  // const [selectedPhoto, setSelectedPhoto] = useState(0);
-  const [isFavorite, setFavorite] = useState(false);
-
-  const user = true;
-
-  const router = useRouter();
-
-const data = {brand: "aaa",information:"adwasda",price:"13",product_name:"SAdas",sale_price:"12",photos:"https://via.placeholder.com/450"}
-  const id = query?.product;
-
-  useEffect(() => {
-    user && setFavorite(user.favorites.includes(id));
-  }, [user]);
-
-  const cart = data;
+  const data = { brand: "aaa", information: "adwasda", price: "13", product_name: "SAdas", sale_price: "12", photos: "https://via.placeholder.com/450" }
 
   const addCartEvent = () => {
-    if (!user && typeof window !== "undefined")
-      router.push("/login");
-    else {
-      if (selectedSize) {
-        const newCart = {
-          ...cart,
-          [id]: cart.hasOwnProperty(id)
-            ? [...cart[id], selectedSize]
-            : [selectedSize],
-        };
-        // addToCart(newCart);
-      }
-      if (sizes?.length === 0) {
-        const newCart = {
-          ...cart,
-          [id]: cart.hasOwnProperty(id) ? [...cart[id], "-"] : ["-"],
-        };
-        // addToCart(newCart);
-      }
-    }
   };
 
   return (
-    <Layout>
       <div className={styles.container}>
-        <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
         <main className={styles.main}>
           <div className={styles.photosContainer}>
             <div className={styles.carouselContainer}>
               <img src={data.photos} loading="lazy" />
-            </div>
-            <div className={styles.smallPhotos}>
-              {/* {data.photos.slice(0, 5).map((image, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={image}
-                    className={styles.smallPhoto}
-                    style={{ borderColor: selectedPhoto === index && "black" }}
-                    // onClick={() => setSelectedPhoto(index)}
-                    loading="lazy"
-                  />
-                );
-              })} */}
             </div>
             <hr />
           </div>
@@ -105,7 +44,6 @@ const data = {brand: "aaa",information:"adwasda",price:"13",product_name:"SAdas"
           </div>
         </main>
       </div>
-    </Layout>
   );
 }
 

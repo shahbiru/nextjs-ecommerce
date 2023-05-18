@@ -16,11 +16,11 @@
       display: flex;
       overflow: hidden;
       flex-direction: column;
-      margin-top: 30px;
+      margin-top: 20px;
 
       @include md {
-        flex-direction: row;
-        margin-top: 50px;
+        // flex-direction: row;
+        // margin-top: 50px;
       }
     }
   }

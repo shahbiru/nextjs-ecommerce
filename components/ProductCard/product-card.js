@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-
+import React from "react";
 import styles from "./product.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Button from "../Button";
+import constants from "utils/constants";
 
 export default function ProductCard({
   bgColor,
@@ -41,19 +42,16 @@ export default function ProductCard({
           <h4 className={styles.brandText}>{brand}</h4>
         </Link>
         <h4>{name}</h4>
-        {sale_price ? (
-          <div className={styles.priceContainer}>
-            <div className={styles.discount}>
-              {(((price - sale_price) / price) * 100) | 0}%
-            </div>
-            <div className={styles.prices}>
-              <span className={styles.priceText}>{price}$</span>
-              <span className={styles.salePriceText}>{sale_price}$</span>
-            </div>
+        <div className={styles.priceContainer}>
+          <div className={styles.prices}>
+            <span className={styles.salePriceText}>{sale_price}$</span>
           </div>
-        ) : (
-          <span className={styles.price}>{price || 0}$</span>
-        )}
+          <div className={styles.buttons}>
+            <Button style={{ margin: 0 }} >
+              {constants.ADD_CART}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

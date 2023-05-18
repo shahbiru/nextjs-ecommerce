@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./cart-item.module.scss";
+import constants from "utils/constants";
 
 export default function CartItem({ id, size, count, onAdd }) {
 
@@ -11,7 +12,7 @@ export default function CartItem({ id, size, count, onAdd }) {
       <img src={data?.cover_photo} className={styles.image} loading="lazy" />
       <div className={styles.textContainer}>
         <h4>{data?.product_name || ""}</h4>
-        <span>Size: {size || "-"}</span>
+        <span>{constants.SIZE}: {size || "-"}</span>
       </div>
       <span className={styles.price}>{data?.sale_price * count || "0"}$</span>
       <div className={styles.buttons}>

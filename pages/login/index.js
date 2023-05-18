@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
-
 import styles from "./login.module.scss";
 import LoginForm from "./login-form";
 import RegisterForm from "./register-form";
+import constants from "utils/constants";
 
 export default function LoginPage() {
   const [page, setPage] = useState("login");
 
-  const router = useRouter();
-
   return (
     <div className={styles.container}>
-      <a className={styles.logo}>Shopping</a>
+      <a className={styles.logo}>{constants.SHOPPING}</a>
       <div className={styles.content}>
         <div className={styles.switchContainer}>
           <button
@@ -20,7 +17,7 @@ export default function LoginPage() {
             onClick={() => setPage("login")}
             style={{ backgroundColor: page === "login" ? "white" : "#f6f6f6" }}
           >
-            <span>Login</span>
+            <span>{constants.LOGIN}</span>
           </button>
           <button
             className={styles.switchButton}
@@ -29,7 +26,7 @@ export default function LoginPage() {
               backgroundColor: page === "register" ? "white" : "#f6f6f6",
             }}
           >
-            <span>Register</span>
+            <span>{constants.REGISTER}</span>
           </button>
         </div>
         {page === "login" ? <LoginForm /> : <RegisterForm />}

@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "@/components/Layout";
 import Link from "next/link";
+import constants from "utils/constants";
 
 export default function ErrorPage() {
   return (
@@ -13,10 +14,10 @@ export default function ErrorPage() {
         }}
       >
         <h1 style={{ fontSize: 64 }}>404</h1>
-        <h2>The content you are looking for is not available at the moment</h2>
+        <h2>{constants.ERROR_TITLE}</h2>
         <Link href="/">
           <h3 style={{ cursor: "pointer", textDecoration: "underline" }}>
-            Continue Shopping
+            {constants.CONTINUE}
           </h3>
         </Link>
       </div>

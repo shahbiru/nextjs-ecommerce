@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-
 import styles from "./header.module.scss";
-
-import SearchIcon from "@/icons/search";
 import CartIcon from "@/icons/cart";
 import ArrowIcon from "@/icons/arrow";
-import { useRouter } from "next/router";
 import MenuIcon from "@/icons/menu";
+import constants from "utils/constants";
 
 export default function Header() {
   const [showHeader, setShowHeader] = useState({
     transform: "translate3d(100vw, 0, 0)",
   });
-  const [input, setInput] = useState(null);
 
-  const router = useRouter();
-
-  const user = false;
-
+  const user = true;
   const cart = false;
   const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
 
@@ -26,7 +19,7 @@ export default function Header() {
     <nav className={styles.container}>
       <div className={styles.logoContainer}>
         <Link href="/">
-          <a className={styles.logo}>Shopping</a>
+          <a className={styles.logo}>{constants.SHOPPING}</a>
         </Link>
         <div className={styles.rightContentMobile}>
           <Link href="/cart">
@@ -53,13 +46,12 @@ export default function Header() {
         <div className={styles.menuContent} style={showHeader}>
           {user ? (
             <>
-              <Link href="/account/orders">My Orders</Link>
-              <Link href="/account/logout">Logout</Link>
+              <Link href="/">{constants.LOGOUT}</Link>
             </>
           ) : (
             <>
-              <Link href="/login">Login</Link>
-              <Link href="/login">Register</Link>
+              <Link href="/login">{constants.LOGIN}</Link>
+              <Link href="/login">{constants.REGISTER}</Link>
             </>
           )}
         </div>
@@ -75,7 +67,7 @@ export default function Header() {
         <Link href="/cart">
           <div className={styles.cartContainer}>
             <CartIcon width={20} height={20} className={styles.cartIcon} />
-            <span>Cart: {cartLength || 0}</span>
+            <span>{constants.CART}: {cartLength || 0}</span>
           </div>
         </Link>
 
@@ -87,7 +79,7 @@ export default function Header() {
               loading="lazy"
             />
             <span>
-              Hello{" "}
+              {constants.HELLO}{" "}
               <span style={{ fontWeight: "normal" }}>
                 {user?.name || "Guest"}
               </span>
@@ -98,13 +90,12 @@ export default function Header() {
               <div className={styles.dropdownMenu}>
                 {user ? (
                   <>
-                    <Link href="/account/orders">My Orders</Link>
-                    <Link href="/account/logout">Logout</Link>
+                    <Link href="/">{constants.LOGOUT}</Link>
                   </>
                 ) : (
                   <>
-                    <Link href="/login">Login</Link>
-                    <Link href="/login">Register</Link>
+                    <Link href="/login">{constants.LOGIN}</Link>
+                    <Link href="/login">{constants.REGISTER}</Link>
                   </>
                 )}
               </div>
