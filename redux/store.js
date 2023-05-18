@@ -1,7 +1,6 @@
 import { createStore, compose, applyMiddleware } from "redux";
-// import logger from "redux-logger";
 import thunk from "redux-thunk";
-// import rootReducers from "./reducers/rootReducers";
+import rootReducers from "./reducers/rootReducers";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
@@ -10,7 +9,7 @@ const composeEnhancers =
 const middleWare = [thunk];
 
 const store = createStore(
-  // rootReducers,
+  rootReducers,
   composeEnhancers(applyMiddleware(...middleWare))
 );
 

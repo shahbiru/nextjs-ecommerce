@@ -1,8 +1,16 @@
 import styles from "./index.module.scss";
 import constants from "utils/constants";
 import ProductCard from "@/components/ProductCard/product-card";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "../redux/actions/productAction";
 
 export default function Home() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  },[])
   const data = [{ "id": 1, "title": "Product 1", "price": 19.99, "image": "https://via.placeholder.com/150" }, { "id": 2, "title": "Product 2", "price": 29.99, "image": "https://via.placeholder.com/150" }, { "id": 3, "title": "Product 3", "price": 39.99, "image": "https://via.placeholder.com/150" }]
   return (
     <div className={styles.container}>
