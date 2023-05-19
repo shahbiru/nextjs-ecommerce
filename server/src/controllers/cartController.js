@@ -1,20 +1,40 @@
 const Cart = require('../models/cart');
-// const Product = require("../models/product")
+const Product = require("../models/product")
 
 exports.addCart = async (req, res) => {
     try {
-        const { productId, userId, quantity } = req.body;
-        const existingCart = await Cart.findOne({ productId, userId });
-        if (existingCart) {
-            existingCart.quantity += 1;
-            await existingCart.save();
-            res.status(200).json(existingCart);
-        } else {
-            const cartItem = new Cart({ productId, userId, quantity });
-            const savedCartItem = await cartItem.save();
-            res.status(201).json(savedCartItem);
+        const { userId, productId, quantity } = req.body;
+    
+        // Check if the product exists
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
         }
-    } catch (error) {
+    
+        // Check if the user's cart exists
+        let cart = await Cart.findOne({ userId });
+        if (!cart) {
+            // Create a new cart if it doesn't exist
+            cart = new Cart({ userId, items: [] });
+        }
+    
+        // Check if the product is already in the cart
+        const cartItem = cart.items.find((item) => item.productId.equals(productId));
+        if (cartItem) {
+            // Update the quantity if the product is already in the cart
+            cartItem.quantity += 1;
+
+        } else {
+            // Add a new item to the cart
+            cart.items.push({ productId, quantity });
+        }
+    
+        // Save the cart
+        await cart.save();
+    
+        res.json(cart);
+        }
+    catch (error) {
         console.error('Error adding product to cart:', error);
         res.status(500).json({ message: 'Server error' });
     }
@@ -23,7 +43,9 @@ exports.addCart = async (req, res) => {
 exports.getCart = async (req, res) => {
     try {
         const { userId } = req.body;
-        const cartItems = await Cart.find({userId: userId}).populate("productId");
+        console.log(userId)
+        const cartItems = await Cart.find({userId: userId}).populate("items.productId");
+        console.log(cartItems)
         res.status(200).json({ userId, cartItems });
     } catch (error) {
         console.error('Error retrieving cart:', error);

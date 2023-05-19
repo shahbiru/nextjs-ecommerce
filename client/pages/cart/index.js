@@ -12,9 +12,7 @@ export default function CartPage() {
   }, [])
 
   const cartItem = useSelector((state) => state?.cart?.cartItems);
-
-  const data = [{ "id": 1, "name": "Product 1", "size": 19.99, "count": "2" }, { "id": 1, "name": "Product 1", "size": 19.99, "count": "2" }]
-
+  console.log(cartItem)
   const cartLength = Object.keys(cartItem).reduce((a, b) => a + cartItem, 0);
 
   const cartItems =
@@ -51,8 +49,8 @@ export default function CartPage() {
     return { ...item, count: sizeCount[item.name + "__size__" + item.size] };
   });
 
-  const addCartEvent = () =>{
-    
+  const addCartEvent = () => {
+
   }
 
   return (
@@ -79,9 +77,9 @@ export default function CartPage() {
         })}
       </main>
       <div className={styles.cartTotal}>
-      <h4 className={styles.cartTotalLabel}>Total:</h4>
-      <div className={styles.cartTotalPrice}>$ <span className={styles.cartPrice}>500</span></div>
-    </div>
+        <h4 className={styles.cartTotalLabel}>Total:</h4>
+        <div className={styles.cartTotalPrice}>$ <span className={styles.cartPrice}>500</span></div>
+      </div>
     </div>
   );
 }

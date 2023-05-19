@@ -28,5 +28,6 @@ export const getProductListData = async () =>
 export const addCartItem = async (data) =>
   await axios.post(`${API_URL}/cart`, data, getHeaders());
 
-export const getCartItem = async (id) =>
+export const getCartItem = async (id) =>{
   await axios.get(`${API_URL}/cart/${id}`, getHeaders());
+}
