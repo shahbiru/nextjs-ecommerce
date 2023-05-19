@@ -6,6 +6,9 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Link from "next/link";
 import constants from "utils/constants";
+import { useDispatch } from "react-redux";
+import { login } from "redux/actions/userAction";
+import { Router, useRouter } from "next/router";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("* Email is required."),
@@ -16,6 +19,8 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [loginError, setLoginError] = useState();
 
   const { register, handleSubmit, watch, errors } = useForm({
@@ -23,7 +28,10 @@ export default function LoginForm() {
   });
 
   const onSubmit = (data) => {
-
+    if(data){
+    dispatch(login(data));
+    router.push("/")
+    }
   };
   return (
     <form

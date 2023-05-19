@@ -5,7 +5,7 @@ import Button from "@/components/Button";
 export default function Product({ query }) {
 
   const data = { brand: "aaa", information: "adwasda", price: "13", product_name: "SAdas", sale_price: "12", photos: "https://via.placeholder.com/450" }
-
+  
   const addCartEvent = () => {
   };
 

@@ -5,7 +5,6 @@ import constants from "utils/constants";
 
 export default function ErrorPage() {
   return (
-    <Layout>
       <div
         style={{
           display: "flex",
@@ -21,6 +20,5 @@ export default function ErrorPage() {
           </h3>
         </Link>
       </div>
-    </Layout>
   );
 }

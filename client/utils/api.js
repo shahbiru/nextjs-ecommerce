@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = "https://dummyjson.com";
+export const API_URL = "http://localhost:5000/api";
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');
@@ -11,6 +11,15 @@ const getHeaders = () => {
     }
   };
 };
+
+//GetAll User Data
+export const getUserData = async (data) => {
+  await axios.post(`${API_URL}/signup`, data);
+}
+
+export const loginUser = async (data) => {
+  await axios.post(`${API_URL}/signin`, data);
+}
 
 //GetAll product Data
 export const getProductListData = async () =>

@@ -5,6 +5,8 @@ import * as yup from "yup";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import constants from "utils/constants";
+import { useDispatch } from "react-redux";
+import { signup } from "redux/actions/userAction";
 
 const schema = yup.object().shape({
   name: yup
@@ -23,12 +25,16 @@ const schema = yup.object().shape({
 });
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
   const [registerError, setRegisterError] = useState();
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = ({ email, password, name, surname }) => {
-
+  const onSubmit = (value) => {
+    if (value) {
+      dispatch(signup(value));
+      router.push("/")
+    }
   }
 
   return (

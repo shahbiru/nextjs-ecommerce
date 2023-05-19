@@ -1,5 +1,4 @@
 import { getProductListData } from 'utils/api';
-// import { fetchProducts } from '../api/fakeApi';
 import * as type from "../types/type"
 
 // Action creators
