@@ -21,9 +21,10 @@ exports.productCart = async (req, res) => {
 
 exports.getCart = async (req, res) => {
     try {
-        const cartItems = await Cart.find();
+        const { userId } = req.body;
+        const cartItems = await Cart.findOne({userId: userId});
 
-        res.status(200).json({ cartItems });
+        res.status(200).json({ userId, cartItems });
     } catch (error) {
         console.error('Error retrieving cart:', error);
         res.status(500).json({ message: 'Server error' });
