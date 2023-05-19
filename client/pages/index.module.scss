@@ -39,9 +39,15 @@
     }
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: auto;
       gap: 40px;
+      column-gap: 20px;
       padding-bottom: 30px;
+      @include md{
+        grid-template-columns: auto auto;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 40px;
+      }
     }
   }
 }

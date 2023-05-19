@@ -7,12 +7,17 @@
   justify-content: center;
   font-size: 14px;
   padding-top: 20px;
+  background-color: #fff;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 20px;
 
   @include md {
     align-items: center;
     flex-direction: row;
     padding-top: 0px;
     height: 90px;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   .logoContainer {

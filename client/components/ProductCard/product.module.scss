@@ -1,13 +1,16 @@
+@import "../../styles/breakpoints.scss";
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-self: center;
   min-height: 400px;
-  max-width: 300px;
+  max-width: 350px;
+  width: 100%;
   height: 100%;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   direction: initial;
   overflow: hidden;
   position: relative;
@@ -18,6 +21,9 @@
   -moz-transition: box-shadow 300ms ease-in-out;
   -ms-transition: box-shadow 300ms ease-in-out;
   -o-transition: box-shadow 300ms ease-in-out;
+  @include sm{
+    max-width: 300px;
+  }
 
   .textContainer {
     display: flex;
@@ -25,8 +31,10 @@
     text-align: left;
     width: auto;
     justify-content: center;
+    align-items: flex-start;
     word-break: break-word;
     flex-grow: 1;
+    width: 100%;
 
     .brandText {
       font-size: 16px;
@@ -40,6 +48,7 @@
       font-size: 14px;
       text-align: center;
       line-height: 21px;
+      margin-bottom: 20px;
     }
 
     span {
@@ -51,7 +60,9 @@
     .priceContainer {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
 
       .discount {
         background-color: red;
@@ -80,7 +91,14 @@
         }
       }
       .buttons{
-        margin-left: 20px;
+        margin-top: 12px;
+        margin-left: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        button{
+          width: auto;
+        }
       }
     }
   }

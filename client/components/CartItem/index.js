@@ -8,8 +8,9 @@ export default function CartItem({ id, size, count, onAdd }) {
 
 
   return (
+    <>
     <div className={styles.container}>
-      <img src={data?.cover_photo} className={styles.image} loading="lazy" />
+      <img src={data?.photos} className={styles.image} loading="lazy" />
       <div className={styles.textContainer}>
         <h4>{data?.product_name || ""}</h4>
         <span>{constants.SIZE}: {size || "-"}</span>
@@ -21,5 +22,10 @@ export default function CartItem({ id, size, count, onAdd }) {
         <button onClick={() => onAdd(id, size)}>+</button>
       </div>
     </div>
+    <div className={styles.cartTotal}>
+      <h4 className={styles.cartTotalLabel}>Total:</h4>
+      <div className={styles.cartTotalPrice}>$ <span className={styles.cartPrice}>500</span></div>
+    </div>
+    </>
   );
 }

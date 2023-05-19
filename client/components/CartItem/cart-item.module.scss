@@ -17,7 +17,10 @@
   img {
     width: 100px;
     min-width: 100px;
-    margin-right: 20px;
+    margin-right: 0;
+    @include md {
+      margin-right: 20px;
+    }
   }
 
   .textContainer {
@@ -28,6 +31,7 @@
 
     @include md {
       margin-right: 50px;
+      align-items: flex-start;
     }
 
     h4 {
@@ -73,5 +77,21 @@
       padding-left: 10px;
       padding-right: 10px;
     }
+  }
+}
+.cartTotal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px;
+  font-size: 20px;
+  font-weight: 600;
+  .cartTotalLabel{
+    margin: 0 12px 0 0;
+  }
+  @include md {
+    justify-content: flex-end;
+    margin: 25px 0;
+    font-size: 24px;
   }
 }

@@ -62,17 +62,17 @@ export default function CartPage() {
           <h1 className={styles.title}>My Cart</h1>
           <h4>You have 3 items in your cart</h4>
         </div>
-        {cartItemsArray.map((item, index) => {
-          return (
+        {/* {cartItemsArray.map((item, index) => {
+          return ( */}
             <CartItem
-              key={index}
+              key="1"
               id="dsfs"
               size="9898"
               count="2"
               onAdd={addCartEvent}
             />
-          );
-        })}
+          {/* );
+        })} */}
       </main>
     </div>
   );

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap");
+@import "../../styles/breakpoints.scss";
 
 .container {
   width: 100%;
@@ -8,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
+  padding-bottom: 50px;
 
   .logo {
     font-family: "Sansita Swashed", cursive;
@@ -22,9 +24,18 @@
   .content {
     border: 1px solid #eee;
     border-radius: 16px;
-    padding: 70px;
+    padding: 20px;
     max-width: 500px;
+    min-width: 100%;
+    width: 100%;
     height: 100%;
+    @include md{
+      padding: 70px;
+      min-width: 500px;
+    }
+    @include sm{
+      padding: 40px;
+    }
 
     .switchContainer {
       background-color: #f6f6f6;
@@ -34,13 +45,18 @@
       display: flex;
 
       .switchButton {
-        padding: 20px;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
         border: none;
         border-radius: 16px;
         background-color: transparent;
         width: 100%;
+        @include sm{
+          padding: 20px;
+          padding-left: 40px;
+          padding-right: 40px;
+        }
 
         span {
           font-weight: bold;
