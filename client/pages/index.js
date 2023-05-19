@@ -2,7 +2,7 @@ import styles from "./index.module.scss";
 import constants from "utils/constants";
 import ProductCard from "@/components/ProductCard/product-card";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/actions/productAction";
 
 export default function Home() {
@@ -11,7 +11,9 @@ export default function Home() {
   useEffect(() => {
     dispatch(fetchProducts())
   },[])
-  const data = [{ "id": 1, "title": "Product 1", "price": 19.99, "image": "https://via.placeholder.com/150" }, { "id": 2, "title": "Product 2", "price": 29.99, "image": "https://via.placeholder.com/150" }, { "id": 3, "title": "Product 3", "price": 39.99, "image": "https://via.placeholder.com/150" }]
+
+  const product = useSelector((state) => state?.product?.products)
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -22,16 +24,15 @@ export default function Home() {
         </div>
         <div className={styles.products}>
           {
-            data.map((product) => {
+            product.map((product) => {
               return (
                 <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  brand={product.title}
-                  name={product.title}
+                  key={product._id}
+                  id={product._id}
+                  brand={product.brand}
+                  name={product.name}
                   image={product.image}
                   price={product.price}
-                  sale_price={product.price}
                 />
               );
             })}

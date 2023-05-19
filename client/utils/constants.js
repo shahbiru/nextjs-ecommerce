@@ -13,7 +13,7 @@ const constants = {
     LOGOUT: "Logout",
     HELLO: "Hello",
     CART: "cart",
-    SIZE: "size",
+    PRICE: "price",
   };
   
   export default constants;

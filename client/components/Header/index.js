@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./header.module.scss";
 import CartIcon from "@/icons/cart";
 import ArrowIcon from "@/icons/arrow";
 import MenuIcon from "@/icons/menu";
 import constants from "utils/constants";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [showHeader, setShowHeader] = useState({
     transform: "translate3d(100vw, 0, 0)",
   });
+  const router = useRouter();
+  const [userToken, setUserToken] = useState();
+  const [user, setUser] = useState();
 
-  const user = false;
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    setUserToken(token);
+    const userData = JSON.parse(localStorage.getItem("user"))
+    setUser(userData);
+  }, []);
+
   const cart = false;
   const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    router.push("/login");
+  }
 
   return (
     <nav className={styles.container}>
@@ -44,7 +60,7 @@ export default function Header() {
       </div>
       <div className={styles.rightMenu}>
         <div className={styles.menuContent} style={showHeader}>
-          {user ? (
+          {userToken ? (
             <>
               <Link href="/">{constants.LOGOUT}</Link>
             </>
@@ -70,38 +86,30 @@ export default function Header() {
             <span>{constants.CART}: {cartLength || 0}</span>
           </div>
         </Link>
-
-        <Link href="/account">
-          <div className={styles.profileContainer}>
-            <img
-              src={user?.photoUrl || "https://picsum.photos/200/200"}
-              className={styles.profilePhoto}
-              loading="lazy"
-            />
-            <span>
-              {constants.HELLO}{" "}
-              <span style={{ fontWeight: "normal" }}>
-                {user?.name || "Guest"}
-              </span>
+        <div className={styles.profileContainer}>
+          <span>
+            {constants.HELLO}{" "}
+            <span style={{ fontWeight: "normal" }}>
+              {user?.name || "Guest"}
             </span>
-            <ArrowIcon width={10} height={10} className={styles.arrowIcon} />
-            <div className={styles.dropdown}>
-              <div className={styles.arrowUp} />
-              <div className={styles.dropdownMenu}>
-                {user ? (
-                  <>
-                    <Link href="/">{constants.LOGOUT}</Link>
-                  </>
-                ) : (
-                  <>
-                    <Link href="/login">{constants.LOGIN}</Link>
-                    <Link href="/login">{constants.REGISTER}</Link>
-                  </>
-                )}
-              </div>
+          </span>
+          <ArrowIcon width={10} height={10} className={styles.arrowIcon} />
+          <div className={styles.dropdown}>
+            <div className={styles.arrowUp} />
+            <div className={styles.dropdownMenu}>
+              {userToken ? (
+                <>
+                  <button type="button" onClick={() => logout()}>{constants.LOGOUT}</button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login">{constants.LOGIN}</Link>
+                  <Link href="/login">{constants.REGISTER}</Link>
+                </>
+              )}
             </div>
           </div>
-        </Link>
+        </div>
       </div>
     </nav>
   );

@@ -1,18 +1,27 @@
 import styles from "./cart.module.scss";
 import CartItem from "@/components/CartItem";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "redux/actions/cartAction";
 
 export default function CartPage() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const id = "64674329e0288275b408acd2"
+    dispatch(getCart(id))
+  }, [])
+
+  const cartItem = useSelector((state) => state?.cart?.cartItems);
 
   const data = [{ "id": 1, "name": "Product 1", "size": 19.99, "count": "2" }, { "id": 1, "name": "Product 1", "size": 19.99, "count": "2" }]
 
-  const cartLength = Object.keys(data).reduce((a, b) => a + data, 0);
+  const cartLength = Object.keys(cartItem).reduce((a, b) => a + cartItem, 0);
 
   const cartItems =
     cartLength > 0
-      ? Object.keys(data)
+      ? Object.keys(cartItem)
         .map((item) => {
-          return data.map((size) => {
+          return cartItem.map((size) => {
             return {
               name: item,
               size,
@@ -42,18 +51,9 @@ export default function CartPage() {
     return { ...item, count: sizeCount[item.name + "__size__" + item.size] };
   });
 
-  const addCartEvent = (id, size) => {
-    const newCart = size
-      ? {
-        ...data,
-        [id]: data.hasOwnProperty(id) ? [...data[id], size] : [size],
-      }
-      : {
-        ...data,
-        [id]: data.hasOwnProperty(id) ? [...data[id], "-"] : ["-"],
-      };
-    // addToCart(newCart);
-  };
+  const addCartEvent = () =>{
+    
+  }
 
   return (
     <div className={styles.container}>
@@ -62,18 +62,26 @@ export default function CartPage() {
           <h1 className={styles.title}>My Cart</h1>
           <h4>You have 3 items in your cart</h4>
         </div>
-        {/* {cartItemsArray.map((item, index) => {
-          return ( */}
+        {cartItem.map((item, index) => {
+          console.log(item)
+          return (
             <CartItem
               key="1"
-              id="dsfs"
-              size="9898"
-              count="2"
+              id={item.productId._id}
+              name={item.productId.name}
+              brand={item.productId.brand}
+              img={item.productId.image}
+              count={item.quantity}
+              price={item.productId.price}
               onAdd={addCartEvent}
             />
-          {/* );
-        })} */}
+          );
+        })}
       </main>
+      <div className={styles.cartTotal}>
+      <h4 className={styles.cartTotalLabel}>Total:</h4>
+      <div className={styles.cartTotalPrice}>$ <span className={styles.cartPrice}>500</span></div>
+    </div>
     </div>
   );
 }

@@ -22,7 +22,7 @@ export const fetchProducts = () => {
     dispatch(fetchProductsRequest());
     getProductListData()
       .then((response) => {
-        dispatch(fetchProductsSuccess(response?.data?.products));
+        dispatch(fetchProductsSuccess(response?.data));
       })
       .catch((error) => {
         dispatch(fetchProductsFailure(error));

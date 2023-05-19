@@ -1,15 +1,16 @@
 const Cart = require('../models/cart');
+// const Product = require("../models/product")
 
-exports.productCart = async (req, res) => {
+exports.addCart = async (req, res) => {
     try {
-        const { productId, userId } = req.body;
+        const { productId, userId, quantity } = req.body;
         const existingCart = await Cart.findOne({ productId, userId });
         if (existingCart) {
             existingCart.quantity += 1;
             await existingCart.save();
             res.status(200).json(existingCart);
         } else {
-            const cartItem = new Cart({ productId, userId });
+            const cartItem = new Cart({ productId, userId, quantity });
             const savedCartItem = await cartItem.save();
             res.status(201).json(savedCartItem);
         }
@@ -22,8 +23,7 @@ exports.productCart = async (req, res) => {
 exports.getCart = async (req, res) => {
     try {
         const { userId } = req.body;
-        const cartItems = await Cart.findOne({userId: userId});
-
+        const cartItems = await Cart.find({userId: userId}).populate("productId");
         res.status(200).json({ userId, cartItems });
     } catch (error) {
         console.error('Error retrieving cart:', error);
@@ -55,15 +55,17 @@ exports.updateCart = async (req, res) => {
 exports.deleteCart = async (req, res) => {
     try {
         const { id } = req.params;
-
+    
+        // Find the cart item by ID and delete it
         const deletedCartItem = await Cart.findByIdAndDelete(id);
+    
+        // Check if the cart item was found and deleted
         if (!deletedCartItem) {
-            return res.status(404).json({ message: 'Cart item not found' });
+          return res.status(404).json({ message: 'Cart item not found' });
         }
-
-        res.status(200).json({ message: 'Cart item deleted' });
-    } catch (error) {
-        console.error('Error deleting cart item:', error);
-        res.status(500).json({ message: 'Server error' });
-    }
+    
+        res.status(200).json({ message: 'Cart item deleted successfully' });
+      } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+      }
 };

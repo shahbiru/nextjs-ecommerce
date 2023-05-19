@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./product.module.scss";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Button from "../Button";
 import constants from "utils/constants";
+import { useDispatch } from "react-redux";
+import { addToCart } from "redux/actions/cartAction";
 
 export default function ProductCard({
   bgColor,
@@ -11,18 +12,17 @@ export default function ProductCard({
   brand,
   name,
   price,
-  sale_price,
   image,
-  favorite,
   ...props
 }) {
 
-  const router = useRouter();
-
-  const goToProduct = (target) => {
-    target?.localName !== "button" &&
-      typeof window !== "undefined" &&
-      router.push(`/${id}`);
+  const dispatch = useDispatch(); 
+  const addCart = (id) => {
+    const data ={
+      userId: "64674329e0288275b408acd2",
+      productId: id,
+    }
+    dispatch(addToCart(data))
   };
 
   return (
@@ -31,7 +31,6 @@ export default function ProductCard({
       style={{
         backgroundColor: bgColor || "",
       }}
-      onClick={(e) => goToProduct(e.target)}
       {...props}
     >
       <div className={styles.imageContainer}>
@@ -44,10 +43,10 @@ export default function ProductCard({
         <h4>{name}</h4>
         <div className={styles.priceContainer}>
           <div className={styles.prices}>
-            <span className={styles.salePriceText}>{sale_price}$</span>
+            <span className={styles.salePriceText}>{price}$</span>
           </div>
           <div className={styles.buttons}>
-            <Button style={{ margin: 0 }} >
+            <Button style={{ margin: 0 }} onClick={() => addCart(id)}>
               {constants.ADD_CART}
             </Button>
           </div>

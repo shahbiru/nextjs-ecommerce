@@ -6,7 +6,7 @@ const getHeaders = () => {
   const token = localStorage.getItem('token');
   return {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
       'No-Auth-Challenge': true
     }
   };
@@ -23,4 +23,10 @@ export const loginUser = async (data) => {
 
 //GetAll product Data
 export const getProductListData = async () =>
-  await axios.get(`${API_URL}/products`);
+  await axios.get(`${API_URL}/product`, getHeaders());
+
+export const addCartItem = async (data) =>
+  await axios.post(`${API_URL}/cart`, data, getHeaders());
+
+export const getCartItem = async (id) =>
+  await axios.get(`${API_URL}/cart/${id}`, getHeaders());
