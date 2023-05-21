@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./header.module.scss";
 import CartIcon from "@/icons/cart";
@@ -6,6 +6,7 @@ import ArrowIcon from "@/icons/arrow";
 import MenuIcon from "@/icons/menu";
 import constants from "utils/constants";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [showHeader, setShowHeader] = useState({

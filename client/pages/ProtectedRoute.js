@@ -15,8 +15,7 @@ const ProtectedRoute = ({ children, router }) => {
     ];
 
     let pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
-    if (token && !pathIsProtected) {
-      // If the token is empty, redirect to the login page
+    if (token) {
       setTimeout(() => {
         setIsLoading(false);
         router.push('/');

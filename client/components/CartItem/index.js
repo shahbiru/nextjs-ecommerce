@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./cart-item.module.scss";
 import constants from "utils/constants";
 
-export default function CartItem({ id, name, count, price, img, onAdd }) {
+export default function CartItem({ id, name, count, price, img, onAdd,onSub }) {
 
   return (
     <>
@@ -14,8 +14,8 @@ export default function CartItem({ id, name, count, price, img, onAdd }) {
       </div>
       <span className={styles.price}></span>
       <div className={styles.buttons}>
-        <button>-</button>
-        <span>{count || "0"}</span>
+        <button onClick={() => onSub(id)}>-</button>
+        <span >{count || "0"}</span>
         <button onClick={() => onAdd(id)}>+</button>
       </div>
     </div>

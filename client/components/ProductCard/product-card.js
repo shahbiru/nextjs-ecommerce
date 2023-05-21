@@ -15,12 +15,13 @@ export default function ProductCard({
   image,
   ...props
 }) {
-
+const userId = JSON.parse(localStorage.getItem("user"))
   const dispatch = useDispatch(); 
   const addCart = (id) => {
     const data ={
-      userId: "64674329e0288275b408acd2",
+      userId: userId._id,
       productId: id,
+      price: price,
     }
     dispatch(addToCart(data))
   };

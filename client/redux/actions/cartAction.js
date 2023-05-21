@@ -1,7 +1,8 @@
 import { addCartItem, getCartItem } from 'utils/api';
 import * as type from "../types/type"
 import { toast } from "react-toastify";
-
+import axios from 'axios';
+import { API_URL } from 'utils/api';
 
 // Action creators
 export const addCartRequest = () => ({
@@ -25,6 +26,7 @@ export const addToCart = (data) => {
     addCartItem(data)
       .then((response) => {
         dispatch(addCartSuccess(response?.data));
+        dispatch(getCart(data?.userId))
         if (response.status === 200) {
           toast.success("Product added to card")
         }
@@ -36,14 +38,22 @@ export const addToCart = (data) => {
 };
 
 export const getCart = (id) => {
-  return (dispatch) => {
-    dispatch(addCartRequest());
-    getCartItem(id)
-      .then((response) => {
-        dispatch(addCartSuccess(response.data.cartItems));
+  return function (dispatch) {
+    const token = localStorage.getItem("token")
+    axios({
+      method: "get",
+      url: `${API_URL}/cart/${id}`,
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        dispatch(addCartSuccess(response?.data?.cartItems));
       })
       .catch((error) => {
         dispatch(addCartFailure(error));
       });
-  };
+  }
 };
+

@@ -14,6 +14,7 @@ const cartSchema = new mongoose.Schema({
             },
         },
     ],
+    totalPrice: { type: Number, default: 0 },
 });
 
 const Cart = mongoose.model('Cart', cartSchema);
