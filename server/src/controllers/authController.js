@@ -27,10 +27,10 @@ exports.signup = async (req, res, next) => {
     const { name, surname, email, password } = req.body;
     const usernameCheck = await User.findOne({ email });
     if (usernameCheck)
-      return res.json({ msg: "Username already used", status: false });
+      return res.status(400).json({ msg: "Username already used", status: false });
     const emailCheck = await User.findOne({ email });
     if (emailCheck)
-      return res.json({ msg: "Email already used", status: false });
+      return res.status(400).json({ msg: "Email already used", status: false });
     const hashedPassword = await bcrypt.hash(password, 10);
     const data = await User.create({
       name,

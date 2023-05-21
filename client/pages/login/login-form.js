@@ -30,7 +30,6 @@ export default function LoginForm() {
   const onSubmit = (data) => {
     if(data){
     dispatch(login(data));
-    router.push("/")
     }
   };
   return (

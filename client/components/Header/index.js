@@ -12,15 +12,8 @@ export default function Header() {
     transform: "translate3d(100vw, 0, 0)",
   });
   const router = useRouter();
-  const [userToken, setUserToken] = useState();
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-    setUserToken(token);
-    const userData = JSON.parse(localStorage.getItem("user"))
-    setUser(userData);
-  }, []);
+  const token = localStorage.getItem("token")
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const cart = false;
   const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
@@ -60,7 +53,7 @@ export default function Header() {
       </div>
       <div className={styles.rightMenu}>
         <div className={styles.menuContent} style={showHeader}>
-          {userToken ? (
+          {token ? (
             <>
               <Link href="/">{constants.LOGOUT}</Link>
             </>
@@ -97,9 +90,9 @@ export default function Header() {
           <div className={styles.dropdown}>
             <div className={styles.arrowUp} />
             <div className={styles.dropdownMenu}>
-              {userToken ? (
+              {token ? (
                 <>
-                  <button type="button" onClick={() => logout()}>{constants.LOGOUT}</button>
+                  <button type="button" className={styles.logout} onClick={() => logout()}>{constants.LOGOUT}</button>
                 </>
               ) : (
                 <>

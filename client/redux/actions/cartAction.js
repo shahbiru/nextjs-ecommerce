@@ -1,5 +1,7 @@
 import { addCartItem, getCartItem } from 'utils/api';
 import * as type from "../types/type"
+import { toast } from "react-toastify";
+
 
 // Action creators
 export const addCartRequest = () => ({
@@ -23,6 +25,9 @@ export const addToCart = (data) => {
     addCartItem(data)
       .then((response) => {
         dispatch(addCartSuccess(response?.data));
+        if (response.status === 200) {
+          toast.success("Product added to card")
+        }
       })
       .catch((error) => {
         dispatch(addCartFailure(error));

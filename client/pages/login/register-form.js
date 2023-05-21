@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .required("* Name is required.")
-    .min(2, "* Name is too short"),
+    .min(3, "* Name is too short"),
   surname: yup
     .string()
     .required("* Surname is required.")
@@ -33,7 +33,6 @@ export default function RegisterForm() {
   const onSubmit = (value) => {
     if (value) {
       dispatch(signup(value));
-      router.push("/")
     }
   }
 
