@@ -12,12 +12,12 @@ export default function Header() {
   const [showHeader, setShowHeader] = useState({
     transform: "translate3d(100vw, 0, 0)",
   });
+
   const router = useRouter();
   const token = localStorage.getItem("token")
   const user = JSON.parse(localStorage.getItem("user"))
 
-  const cart = false;
-  const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
+  const cartLength = useSelector((state) => state?.cart?.cartItems[0]?.items?.length);
 
   const logout = () => {
     localStorage.removeItem('token');

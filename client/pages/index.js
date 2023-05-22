@@ -4,12 +4,14 @@ import ProductCard from "@/components/ProductCard/product-card";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/actions/productAction";
+import { getCart } from "redux/actions/cartAction";
 
 export default function Home() {
   const dispatch = useDispatch()
-
+  const user = JSON.parse(localStorage.getItem("user"))
   useEffect(() => {
     dispatch(fetchProducts())
+    dispatch(getCart(user._id))
   },[])
 
   const product = useSelector((state) => state?.product?.products)
