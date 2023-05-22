@@ -1,5 +1,5 @@
 const constants = {
-    API_URL: 'http://localhost:5000/api',
+    API_URL: 'http://localhost:8080/api',
     TITLE: "E-commerce",
     PRODUCT: 'Product',
     ERROR_TITLE: "The content you are looking for is not available at the moment",

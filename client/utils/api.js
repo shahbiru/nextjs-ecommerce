@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = "http://localhost:5000/api";
+export const API_URL = "http://localhost:8080/api";
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');
