@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children, router }) => {
     ];
 
     let pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
-    if (token) {
+    if (token && !pathIsProtected) {
       setTimeout(() => {
         setIsLoading(false);
         router.push('/');
