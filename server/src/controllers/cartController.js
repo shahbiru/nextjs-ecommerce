@@ -95,12 +95,14 @@ exports.deleteCart = async (req, res) => {
 
         // Find the user's cart
         const cart = await Cart.findOne({ userId });
+      
         if (!cart) {
             return res.status(404).json({ message: 'Cart not found' });
         }
 
         // Find the index of the item in the cart
         const itemIndex = cart.items.findIndex((item) => item.productId.equals(itemId));
+
         const productPrice = await Product.findById(itemId);
 
         cart.totalPrice -= productPrice.price;

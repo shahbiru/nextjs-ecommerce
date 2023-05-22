@@ -17,7 +17,8 @@ exports.createProduct = async (req, res) => {
 exports.getProduct = async (req, res, next) => {
   try {
     const product = await Product.find();
-    res.status(201).json(product);
+   res.json({ status: 200, product });
+    // res.status(200).json(product);
   } catch (error) {
     console.error('Error retrieving products:', error);
     res.status(500).json({ message: 'Server error' });

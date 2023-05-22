@@ -20,5 +20,5 @@ app.use("/api", Router);
 app.listen(port, () => {
   console.log(`connection setup on port ${port}`)
 })
-
+module.exports = app
 
