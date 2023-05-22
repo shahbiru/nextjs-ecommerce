@@ -56,8 +56,12 @@ export default function CartPage() {
         })}
       </main>
       <div className={styles.cartTotal}>
-        <h4 className={styles.cartTotalLabel}>Total:</h4>
-        <div className={styles.cartTotalPrice}>$ <span className={styles.cartPrice}>{cartItem[0]?.totalPrice}</span></div>
+        <div className={styles.cartTotalWrapper}>
+          <h4 className={styles.cartTotalLabel}>Total:</h4>
+          <div className={styles.cartTotalPrice}>$ <span className={styles.cartPrice}>{cartItem[0]?.totalPrice}</span></div>
+        </div>
+        
+        <button className={styles.continueShopping}>Continue Shopping</button>
       </div>
     </div>
   );

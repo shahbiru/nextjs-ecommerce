@@ -1,3 +1,5 @@
+@import "../../styles/breakpoints.scss";
+
 .container {
   width: 100%;
   .main {
@@ -25,6 +27,43 @@
         font-size: 14px;
         font-weight: bold;
       }
+    }
+  }
+}
+.cartTotal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0 30px;
+  font-size: 20px;
+  font-weight: 600;
+  .cartTotalLabel{
+    margin: 0 12px 0 0;
+  }
+  .cartTotalWrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  @include md {
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 25px 0;
+    font-size: 24px;
+  }
+  .continueShopping{
+    background-color: #000;
+    padding: 10px 16px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    @include md {
+      padding: 12px 20px;
+      font-size: 18px;
     }
   }
 }

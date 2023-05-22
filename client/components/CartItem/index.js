@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./cart-item.module.scss";
 import constants from "utils/constants";
+import DangerIcon from "@/icons/cross";
 
 export default function CartItem({ id, name, count, price, img, onAdd,onSub }) {
 
@@ -18,6 +19,9 @@ export default function CartItem({ id, name, count, price, img, onAdd,onSub }) {
         <span >{count || "0"}</span>
         <button onClick={() => onAdd(id,count)}>+</button>
       </div>
+      <button className={styles.cancelIcon}>
+        <DangerIcon width={28} height={28}/>
+      </button>
     </div>
     </>
   );

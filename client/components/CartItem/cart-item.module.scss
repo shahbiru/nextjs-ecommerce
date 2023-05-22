@@ -9,6 +9,7 @@
   align-items: center;
   margin-bottom: 20px;
   flex-direction: column;
+  position: relative;
 
   @include md {
     flex-direction: row;
@@ -78,20 +79,20 @@
       padding-right: 10px;
     }
   }
-}
-.cartTotal{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0 30px;
-  font-size: 20px;
-  font-weight: 600;
-  .cartTotalLabel{
-    margin: 0 12px 0 0;
+  .cancelIcon{
+    border: 0px;
+    background-color: transparent;
+    padding: 0px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    @include md {
+      position: relative;
+      right: 0px;
+      top: 0px;
+      margin-left: 15px;
+    }
   }
-  @include md {
-    justify-content: flex-end;
-    margin: 25px 0;
-    font-size: 24px;
-  }
+  
 }
