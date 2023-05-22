@@ -1,49 +1,45 @@
-import Link from "next/link";
-import styles from "./product.module.scss";
-import Button from "@/components/Button";
+import styles from "../index.module.scss";
+import constants from "utils/constants";
+import ProductCard from "@/components/ProductCard/product-card";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../redux/actions/productAction";
+import { getCart } from "redux/actions/cartAction";
 
-export default function Product({ query }) {
+export default function Product() {
+  const dispatch = useDispatch()
+  const user = JSON.parse(localStorage.getItem("user"))
+  useEffect(() => {
+    dispatch(fetchProducts())
+    dispatch(getCart(user._id))
+  },[])
 
-  const data = { brand: "aaa", information: "adwasda", price: "13", product_name: "SAdas", sale_price: "12", photos: "https://via.placeholder.com/450" }
-  
-  const addCartEvent = () => {
-  };
+  const product = useSelector((state) => state?.product?.products)
 
   return (
-      <div className={styles.container}>
-        <main className={styles.main}>
-          <div className={styles.photosContainer}>
-            <div className={styles.carouselContainer}>
-              <img src={data.photos} loading="lazy" />
-            </div>
-            <hr />
-          </div>
-          <div className={styles.productInfos}>
-            <div className={styles.header}>
-              <h1 className={styles.productTitle}>{data.product_name || ""}</h1>
-              <Link href={'/'}>{data.brand || ""}</Link>
-            </div>
-            <span className={styles.priceText}>{data.price || 0}$</span>
-            <div className={styles.saleContainer}>
-              <span className={styles.saleText}>{data.sale_price || 0}$</span>
-              <span className={styles.savedText}>
-                {"(You will be saved " + (data.price - data.sale_price) + "$!)"}
-              </span>
-            </div>
-            <hr />
-            <div className={styles.buttons}>
-              <Button style={{ margin: 0 }} onClick={addCartEvent}>
-                Add to Cart
-              </Button>
-            </div>
-            <hr />
-            <div className={styles.infoContainer}>
-              <h4 className={styles.sizesText}>Product Information</h4>
-              <p className={styles.infoText}>{data.information}</p>
-            </div>
-          </div>
-        </main>
-      </div>
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>
+            {constants.PRODUCT}
+          </h1>
+        </div>
+        <div className={styles.products}>
+          {
+            product.map((product) => {
+              return (
+                <ProductCard
+                  key={product._id}
+                  id={product._id}
+                  brand={product.brand}
+                  name={product.name}
+                  image={product.image}
+                  price={product.price}
+                />
+              );
+            })}
+        </div>
+      </main>
+    </div>
   );
 }
-
