@@ -14,6 +14,12 @@ const constants = {
     HELLO: "Hello",
     CART: "cart",
     PRICE: "price",
+    MY_CART: "My Cart",
+    YOU: "You have",
+    ITEMS: "items in your cart",
+    TOTAL: "Total :",
+    $: "$",
+    NOT_FOUND: "404",
   };
   
   export default constants;

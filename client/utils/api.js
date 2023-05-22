@@ -28,9 +28,12 @@ export const getProductListData = async () =>
 export const addCartItem = async (data) =>
   await axios.post(`${API_URL}/cart`, data, getHeaders());
 
-export const getCartItem = async (id) =>{
+export const getCartItem = async (id) => {
   await axios.get(`${API_URL}/cart/${id}`, getHeaders());
 }
 
 export const updateCartItem = async (data) =>
   await axios.put(`${API_URL}/cart/${data.productId}`, data, getHeaders());
+
+export const deleteCartItem = async (id,data) =>
+  await axios.delete(`${API_URL}/cart/${id}`, data, getHeaders());

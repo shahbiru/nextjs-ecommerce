@@ -13,7 +13,7 @@ export default function ErrorPage() {
         flexDirection: "column",
       }}
     >
-      <h1 style={{ fontSize: 64 }}>404</h1>
+      <h1 style={{ fontSize: 64 }}>{constants.NOT_FOUND}</h1>
       <h2>{constants.ERROR_TITLE}</h2>
       {token ? <Link href="/">
         <h3 style={{ cursor: "pointer", textDecoration: "underline" }}>
@@ -21,7 +21,7 @@ export default function ErrorPage() {
         </h3>
       </Link> : <Link href="/login">
         <h3 style={{ cursor: "pointer", textDecoration: "underline" }}>
-          login
+          {constants.LOGIN}
         </h3>
       </Link>}
 

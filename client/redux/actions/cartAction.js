@@ -1,4 +1,4 @@
-import { addCartItem, getCartItem, updateCartItem } from 'utils/api';
+import { addCartItem, deleteCartItem, getCartItem, updateCartItem } from 'utils/api';
 import * as type from "../types/type"
 import { toast } from "react-toastify";
 import axios from 'axios';
@@ -28,7 +28,7 @@ export const addToCart = (data) => {
         dispatch(addCartSuccess(response?.data));
         dispatch(getCart(data?.userId))
         if (response.status === 200) {
-          toast.success("Product added to card")
+          toast.success("Product added to cart")
         }
       })
       .catch((error) => {
@@ -62,16 +62,39 @@ export const updateCart = (data) => {
     dispatch(addCartRequest());
     updateCartItem(data)
       .then((response) => {
-        console.log(response)
         dispatch(addCartSuccess(response?.data));
         dispatch(getCart(data?.userId))
         if (response.status === 200) {
-          toast.success("Product added to card")
+          toast.success("Cart updated successfully!")
         }
       })
       .catch((error) => {
         dispatch(addCartFailure(error));
       });
   };
+};
+
+export const deleteCart = (id, data) => {
+  return function (dispatch) {
+    const token = localStorage.getItem("token")
+    axios({
+      method: "delete",
+      url: `${API_URL}/cart/${id}`,
+      data: data,
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        dispatch(getCart(data?.userId))
+        if (response.status === 200) {
+          toast.success("Product deleted successfully!")
+        }
+      })
+      .catch((error) => {
+        dispatch(addCartFailure(error));
+      });
+  }
 };
 
