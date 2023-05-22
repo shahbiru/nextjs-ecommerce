@@ -1,4 +1,4 @@
-import { addCartItem, getCartItem } from 'utils/api';
+import { addCartItem, getCartItem, updateCartItem } from 'utils/api';
 import * as type from "../types/type"
 import { toast } from "react-toastify";
 import axios from 'axios';
@@ -55,5 +55,23 @@ export const getCart = (id) => {
         dispatch(addCartFailure(error));
       });
   }
+};
+
+export const updateCart = (data) => {
+  return (dispatch) => {
+    dispatch(addCartRequest());
+    updateCartItem(data)
+      .then((response) => {
+        console.log(response)
+        dispatch(addCartSuccess(response?.data));
+        dispatch(getCart(data?.userId))
+        if (response.status === 200) {
+          toast.success("Product added to card")
+        }
+      })
+      .catch((error) => {
+        dispatch(addCartFailure(error));
+      });
+  };
 };
 

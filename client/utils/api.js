@@ -31,3 +31,6 @@ export const addCartItem = async (data) =>
 export const getCartItem = async (id) =>{
   await axios.get(`${API_URL}/cart/${id}`, getHeaders());
 }
+
+export const updateCartItem = async (data) =>
+  await axios.put(`${API_URL}/cart/${data.productId}`, data, getHeaders());

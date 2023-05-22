@@ -2,7 +2,7 @@ import styles from "./cart.module.scss";
 import CartItem from "@/components/CartItem";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "redux/actions/cartAction";
+import { getCart, updateCart } from "redux/actions/cartAction";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -14,12 +14,22 @@ export default function CartPage() {
   const cartItem = useSelector((state) => state?.cart?.cartItems);
   // const [quantity, setQuantity] = useState(cartItem[0]?.item.quantity);
 
-  const addCartEvent = (id) => {
-    console.log("click", id)
+  const addCartEvent = (id, qty) => {
+    const data = {
+      productId: id,
+      userId: userId?._id,
+      quantity: qty + 1
+    }
+    dispatch(updateCart(data))
   }
 
-  const SubCartEvent = (id) => {
-    console.log("Minus", id)
+  const SubCartEvent = (id, qty) => {
+    const data = {
+      productId: id,
+      userId: userId?._id,
+      quantity: qty - 1
+    }
+    dispatch(updateCart(data))
   }
 
   return (

@@ -14,9 +14,9 @@ export default function CartItem({ id, name, count, price, img, onAdd,onSub }) {
       </div>
       <span className={styles.price}></span>
       <div className={styles.buttons}>
-        <button onClick={() => onSub(id)}>-</button>
+        <button onClick={() => onSub(id,count)}>-</button>
         <span >{count || "0"}</span>
-        <button onClick={() => onAdd(id)}>+</button>
+        <button onClick={() => onAdd(id,count)}>+</button>
       </div>
     </div>
     </>

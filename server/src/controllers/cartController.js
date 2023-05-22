@@ -54,10 +54,8 @@ exports.getCart = async (req, res) => {
 exports.updateCart = async (req, res) => {
     try {
         const { userId, productId, quantity } = req.body;
-
         // Find the cart based on the userId
         const cart = await Cart.findOne({ userId });
-
         if (!cart) {
             return res.status(404).json({ error: 'Cart not found' });
         }
