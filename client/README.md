@@ -32,7 +32,7 @@ I have added redux files in both formate one is thunk and other is inside reduce
 
 Created an extra get cart details as per user API that gives the list of cart items for the user
 
-Added postman collectoin JSON file in server folder ecommerce app.postman_collection.json
+Added postman collectoin JSON file in server E-commerce.postman_collection.json
 
 Database: 
 

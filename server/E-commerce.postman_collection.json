@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "55f93aea-9ab3-48f9-99da-230efe05e1b2",
+		"name": "E-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19853352"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Birva\",\r\n    \"surname\": \"shah\",\r\n    \"email\" : \"birvha50@gmail.com\",\r\n    \"password\": \"Birva@2508\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"birva@gmail.com\",\r\n    \"password\": \"birva56409\"\r\n}\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjYwM2ZlZWE4Nzk2ZjJjYmQ2M2M0NyIsImlhdCI6MTY4NDQ3OTE2OSwiZXhwIjoxNjg0NDgyNzY5fQ.Ui7cgcOmqAMVVkYNa1SFHNYqY-1Vy-BCRRpf6OKqD3Y",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Shadows Warrior 3\",\r\n    \"brand\": \"Warsrior\",\r\n    \"price\" : 120,\r\n    \"image\": \"https://cdn.akamai.steamstatic.com/steam/apps/1036890/ss_44cc5a053ae014caac4b673459bd303d93f6f96a.1920x1080.jpg?t=1623532104\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Njc0MzI5ZTAyODgyNzViNDA4YWNkMiIsImlhdCI6MTY4NDY1OTY5NSwiZXhwIjoxNjg0NjYzMjk1fQ.C0G9-7LiU_rHmoOtcGVGWp1x2HsUGo_yF1cnBGQBEg0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productId\": \"6466265ff41dca60a668b534\",\r\n  \"userId\": \"64674329e0288275b408acd2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmEyODRlM2JkMzMzMDA5ODNiNDczOCIsImlhdCI6MTY4NDc0MDAxNiwiZXhwIjoxNjg0NzQzNjE2fQ.ZVfQUhzSPcxNuhHBMfhoV9mZSdAixW77Q1xxiOot5GY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cart/646a284e3bd33300983b4738",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart",
+						"646a284e3bd33300983b4738"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cart",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmEyODRlM2JkMzMzMDA5ODNiNDczOCIsImlhdCI6MTY4NDc0MDAxNiwiZXhwIjoxNjg0NzQzNjE2fQ.ZVfQUhzSPcxNuhHBMfhoV9mZSdAixW77Q1xxiOot5GY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"646a284e3bd33300983b4738\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cart/64661625c8bbeaf62f561e08",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart",
+						"64661625c8bbeaf62f561e08"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmEyODRlM2JkMzMzMDA5ODNiNDczOCIsImlhdCI6MTY4NDczNDg4OSwiZXhwIjoxNjg0NzM4NDg5fQ.PjrYGeacR_DYHmOXJLOq3vcAJNnYePQZjjv9c87AJrI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productId\": \"64661625c8bbeaf62f561e08\",\r\n  \"userId\": \"646a284e3bd33300983b4738\",\r\n  \"quantity\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
