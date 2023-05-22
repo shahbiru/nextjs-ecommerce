@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-commerce shopping site
+This is a sample application that demonstrates an E-commerce app. The application loads products a MongoDB database and displays them. Users can select items and add them to their shopping cart
+
+# Tech Stack
+Next.js
+Node.js
+Express.js
+MongoDB
+JWT (JSON Web Tokens) for authentication
+Supertest (for testing)
+
+## Description
+
+The E-commerce app is a full-stack web application built using Node.js, Express.js, MongoDB, and Next.js. It provides a user-friendly interface for users to browse products, add them to their shopping cart.
+
+## Features
+- User registration
+- User authentication login
+- Product listing
+- Shopping cart functionality (add, update, remove items)
 
 ## Getting Started
 
-First, run the development server:
+server folder contails the node app: command to run->  npm run dev it runs on 8080 port
+client folder contains the client app: command to run->  npm run dev it runs on 3000 port
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+To run node test cases: command-> npx jest
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Additional: 
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+I have added redux files in both formate one is thunk and other is inside reducer directly
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Created an extra get cart details as per user API that gives the list of cart items for the user
 
-## Learn More
+Added postman collectoin JSON file in server folder ecommerce app.postman_collection.json
 
-To learn more about Next.js, take a look at the following resources:
+Database: 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- MongoDB URL : mongodb+srv://mihirgajjar:oQZjPeNJvNgkB5jV@cluster0.xl8o0uw.mongodb.net/e-commerece

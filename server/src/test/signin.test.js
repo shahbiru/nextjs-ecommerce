@@ -10,7 +10,7 @@ describe('API Test Cases', () => {
     it('should return a JWT token when providing valid credentials', async () => {
       const response = await request(app)
         .post('/api/signin')
-        .send({ email: 'birva@gmail.com', password: 'birva56409' })
+        .send({ email: 'mihirgajjar@gmail.com', password: 'mihir123' })
       expect(response.body).toHaveProperty('token');
       token = response.body.token;
       userID = response.body.data._id;
@@ -19,14 +19,14 @@ describe('API Test Cases', () => {
     it('should return 404 when providing invalid email', async () => {
       await request(app)
         .post('/api/signin')
-        .send({ email: 'birvaa@gmail.com', password: 'birvaa56409' })
+        .send({ email: 'mihir@gmail.com', password: 'mihir111' })
         .expect(400);
     });
 
     it('should return 400 when providing invalid password', async () => {
       await request(app)
         .post('/api/signin')
-        .send({ email: 'birvaa@gmail.com', password: 'birvaa56409' })
+        .send({ email: 'mihir@gmail.com', password: 'mihir111' })
         .expect(400);
     });
   });

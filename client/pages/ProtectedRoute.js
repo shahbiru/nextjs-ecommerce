@@ -7,16 +7,16 @@ const ProtectedRoute = ({ children, router }) => {
     const token = localStorage.getItem("token");
     const path = window.location.pathname;
 
-    if (token) {
+    if (token && path === "/login") {
       setTimeout(() => {
         setIsLoading(false);
         router.push('/');
-      }, 3000);
+      }, 500);
     } else if (path === "/") {
       setTimeout(() => {
         setIsLoading(false);
         router.push('/login');
-      }, 2000);
+      }, 500);
     } else {
       setIsLoading(false)
     }
