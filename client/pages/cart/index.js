@@ -31,14 +31,18 @@ export default function CartPage() {
       userId: userId?._id,
       quantity: qty - 1
     }
-    dispatch(updateCart(data))
+    if (qty > 1) {
+      dispatch(updateCart(data))
+    } else {
+      delCartEvent(id)
+    }
   }
 
   const delCartEvent = (id) => {
     const data = {
       userId: userId?._id,
     }
-    dispatch(deleteCart(id,data))
+    dispatch(deleteCart(id, data))
   }
 
   return (
@@ -46,7 +50,7 @@ export default function CartPage() {
       <main className={styles.main}>
         <div className={styles.header}>
           <h1 className={styles.title}>{constants.MY_CART}</h1>
-          <h4>{constants.YOU} {cartItem[0]?.items?.length} {constants.ITEMS}</h4>
+          <h4>{constants.YOU} {cartItem[0]?.items?.length || 0} {constants.ITEMS}</h4>
         </div>
         {cartItem[0]?.items?.map((item, index) => {
           return (
@@ -65,14 +69,17 @@ export default function CartPage() {
           );
         })}
       </main>
-      <div className={styles.cartTotal}>
-        <div className={styles.cartTotalWrapper}>
-          <h4 className={styles.cartTotalLabel}>{constants.TOTAL}</h4>
-          <div className={styles.cartTotalPrice}>{constants.$} <span className={styles.cartPrice}>{cartItem[0]?.totalPrice}</span></div>
-        </div>
 
+      <div className={styles.cartTotal}>
+        {cartItem[0]?.items?.length > 0 &&
+          <div className={styles.cartTotalWrapper}>
+            <h4 className={styles.cartTotalLabel}>{constants.TOTAL}</h4>
+            <div className={styles.cartTotalPrice}>{constants.$} <span className={styles.cartPrice}>{cartItem[0]?.totalPrice}</span></div>
+          </div>
+        }
         <button className={styles.continueShopping} onClick={() => router.push("/")}>{constants.CONTINUE}</button>
       </div>
+
     </div>
   );
 }

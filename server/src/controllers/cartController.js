@@ -96,25 +96,29 @@ exports.deleteCart = async (req, res) => {
         // Find the user's cart
         const cart = await Cart.findOne({ userId });
         if (!cart) {
-          return res.status(404).json({ message: 'Cart not found' });
+            return res.status(404).json({ message: 'Cart not found' });
         }
-    
+
         // Find the index of the item in the cart
         const itemIndex = cart.items.findIndex((item) => item.productId.equals(itemId));
-        console.log(itemIndex)
+        const productPrice = await Product.findById(itemId);
+
+        cart.totalPrice -= productPrice.price;
+        cart.items = cart.items.filter(item => item.productId !== itemId);
+
         if (itemIndex === -1) {
-          return res.status(404).json({ message: 'Item not found in cart' });
+            return res.status(404).json({ message: 'Item not found in cart' });
         }
-    
+
         // Remove the item from the cart
         cart.items.splice(itemIndex, 1);
-    
+
         // Save the cart
         await cart.save();
-    
+
         res.json(cart);
-      } catch (error) {
+    } catch (error) {
         console.error('Error deleting item from cart', error);
         res.status(500).json({ message: 'An error occurred' });
-      }
+    }
 };
