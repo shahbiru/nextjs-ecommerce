@@ -11,8 +11,10 @@ export default function Product() {
   const user = JSON.parse(localStorage.getItem("user"))
   useEffect(() => {
     dispatch(fetchProducts())
-    dispatch(getCart(user._id))
-  },[])
+    if (user) {
+      dispatch(getCart(user._id))
+    }
+  }, [])
 
   const product = useSelector((state) => state?.product?.products)
 

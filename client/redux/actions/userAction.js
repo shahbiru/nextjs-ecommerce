@@ -20,7 +20,7 @@ export const userFailure = (error) => ({
 });
 
 // Thunk action creator
-export const signup = (data) => {
+export const signup = (data,check) => {
   return function (dispatch) {
     axios({
       method: "post",
@@ -30,8 +30,7 @@ export const signup = (data) => {
       .then(function (response) {
         dispatch(userSuccess(response?.data?.data));
         if(response.status === 200){
-          // toast.success("Register Successfully!")
-          dispatch(login({email:data.email, password:data.password}))
+          dispatch(login({email:data.email, password:data.password},check))
         }
       })
       .catch(function (error) {
@@ -41,7 +40,7 @@ export const signup = (data) => {
   }
 };
 
-export const login = (data) => {
+export const login = (data,check) => {
   return function (dispatch) {
     axios({
       method: "post",
@@ -52,7 +51,9 @@ export const login = (data) => {
         localStorage.setItem("token", response.data.token)
         localStorage.setItem("user", JSON.stringify(response.data.data))
         dispatch(userSuccess(response?.data?.data));
-        if(response.status === 200){
+        if(response.status === 200 && check){
+          toast.success("Register Successfully!")
+        }else{
           toast.success("Login Successfully!")
         }
         Router.push("/")

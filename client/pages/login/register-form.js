@@ -31,8 +31,9 @@ export default function RegisterForm() {
     resolver: yupResolver(schema),
   });
   const onSubmit = (value) => {
+    let check = true;
     if (value) {
-      dispatch(signup(value));
+      dispatch(signup(value,check));
     }
   }
 
