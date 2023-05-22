@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react'
 import { CustomLoader } from '@/components/Loader/Loader';
-// import Loader from './Loader';
 
 const ProtectedRoute = ({ children, router }) => {
-  // const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const token = localStorage.getItem("token");
