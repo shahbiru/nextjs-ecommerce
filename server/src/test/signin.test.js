@@ -36,8 +36,8 @@ describe('API Test Cases', () => {
         .get(`/api/product/`)
         .set('Authorization', token)
         .expect(200);
-      productID = productResponse.body.product[0]._id
-      price = productResponse.body.product[0].price
+      productID = productResponse.body[0]._id
+      price = productResponse.body[0].price
     });
     it('should return 401 when product not found', async () => {
       await request(app)

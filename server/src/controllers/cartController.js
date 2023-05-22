@@ -35,7 +35,6 @@ exports.addCart = async (req, res) => {
         res.json(cart);
     }
     catch (error) {
-        console.error('Error adding product to cart:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };
@@ -46,7 +45,6 @@ exports.getCart = async (req, res) => {
         const cartItems = await Cart.find({ userId: userId }).populate("items.productId");
         res.status(200).json({ cartItems });
     } catch (error) {
-        console.error('Error retrieving cart:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };
@@ -120,7 +118,6 @@ exports.deleteCart = async (req, res) => {
 
         res.json(cart);
     } catch (error) {
-        console.error('Error deleting item from cart', error);
         res.status(500).json({ message: 'An error occurred' });
     }
 };
